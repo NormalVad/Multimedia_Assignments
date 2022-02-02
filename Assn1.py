@@ -295,3 +295,87 @@ for i in range(num_chunks):
 
 M_huff1 = len(huff_inp1)
 process_w_decoding(M_huff1,huff_inp1,input_file,huff_chunk_tree1,huff_chunk_len1)
+
+
+
+def arithmetic_encoding(s):
+    
+    length = len(s)
+    one=0
+    zero=0
+    
+    for i in range(length):
+        if(s[i]=='0'):
+            zero=zero+1;
+        else:
+            one=one+1;
+    p=[zero/length, one/length]
+    
+    cpr = [p[0],p[0]+p[1]]
+    newcpr = [0,p[0],p[0]+p[1]]
+    
+    #print(cpr)
+    #print(newcpr)
+    
+    print(cpr)
+    
+    low =0
+    high =1
+    
+    for i in range(length):
+        if (s[i]=='0'):
+            Range = high-low
+            high = low + Range*cpr[0]
+            low = low + Range*newcpr[0]
+        else:
+            Range = high-low
+            high = low + Range*cpr[1]
+            low = low + Range*newcpr[1]
+                
+    tag = (low+high)/2
+    
+    print(tag)
+    
+
+	
+def arithmetic_decoding(s,tag) :
+    
+    # s is the string to be decoded 
+    # tag is the unique value for decoding
+    
+    length = len(s)
+    
+    one=0
+    zero=0
+    
+    for i in range(length):
+        if(s[i]=='0'):
+            zero=zero+1;
+        else:
+            one=one+1;
+    p=[zero/length, one/length]
+    
+    cpr = [p[0],p[0]+p[1]]
+    newcpr = [0,p[0],p[0]+p[1]]
+    
+    #print(cpr)
+    #print(newcpr)
+    
+    
+    decoded_str=""
+    for i in range(length):
+        #print(tag)
+        for j in range(2) :
+            if((tag > newcpr[j]) & (tag < cpr[j])) :
+                decoded_str = decoded_str + str(j) 
+                tag = (tag - newcpr[j])/p[j]
+                break
+    
+    print("Decode String is :")
+    print(decoded_str)
+    
+
+
+
+
+
