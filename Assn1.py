@@ -347,7 +347,7 @@ def arithmetic_encoding_1(s):
     #print(bin_of_Tx)
     
     print("Code for '0' is : " + bin_of_Tx[0])
-    print("Code for '0' is : " + bin_of_Tx[1])
+    print("Code for '1' is : " + bin_of_Tx[1])
   
 
 
