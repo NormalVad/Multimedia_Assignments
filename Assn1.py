@@ -298,7 +298,62 @@ process_w_decoding(M_huff1,huff_inp1,input_file,huff_chunk_tree1,huff_chunk_len1
 
 
 
-def arithmetic_encoding(s):
+# Arithmetic
+
+
+def to_bin(number, places):
+    whole, dec = str(number).split(".")
+  
+    whole = int(whole)
+    dec = int (dec)
+
+    res = bin(whole).lstrip("0b") + "."
+    
+    for x in range(places):
+        whole, dec = str((to_decimal(dec)) * 2).split(".")
+        dec = int(dec)
+        res += whole
+    return res
+  
+def to_decimal(num): 
+    while num > 1:
+        num /= 10
+    return num
+
+def arithmetic_encoding_1(s):
+    
+    length = len(s)
+    one=0
+    zero=0
+    
+    for i in range(length):
+        if(s[i]=='0'):
+            zero=zero+1;
+        else:
+            one=one+1;
+    p=[zero/length, one/length]
+    
+    Fx = [p[0],p[0]+p[1]]
+    Tx = [p[0]/2, p[0]+p[1]/2]
+    
+    number_of_digit = [1+ math.ceil(math.log2(1.0/p[0])), 1+ math.ceil(math.log2(1.0/p[1])) ]
+    #print(number_of_digit)
+    
+    bin_of_Tx = [to_bin(Tx[0], number_of_digit[0]), to_bin(Tx[1], number_of_digit[1])]
+    
+    bin_of_Tx = [bin_of_Tx[0][1:],bin_of_Tx[1][1:] ]
+    
+    #print(Tx)
+    #print(bin_of_Tx)
+    
+    print("Code for '0' is : " + bin_of_Tx[0])
+    print("Code for '0' is : " + bin_of_Tx[1])
+  
+
+
+
+
+def arithmetic_encoding_2(s):
     
     length = len(s)
     one=0
