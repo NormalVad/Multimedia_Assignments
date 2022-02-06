@@ -320,7 +320,7 @@ def to_decimal(num):
         num /= 10
     return num
 
-def arithmetic_encoding_1(s):
+def arithmetic_encoding(s):
     
     length = len(s)
     one=0
@@ -348,10 +348,16 @@ def arithmetic_encoding_1(s):
     
     print("Code for '0' is : " + bin_of_Tx[0])
     print("Code for '1' is : " + bin_of_Tx[1])
+    
+    encoded_string = ""
+    for i in range(length) :
+        if (s[i]=='0'):
+            encoded_string = encoded_string + bin_of_Tx[0];
+        else:
+            encoded_string = encoded_string +bin_of_Tx[1];
   
-
-
-
+    print(encoded_string)
+    
 
 def arithmetic_encoding_2(s):
     
