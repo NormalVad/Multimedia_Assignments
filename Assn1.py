@@ -471,9 +471,10 @@ def arithmetic() :
     for i in range(num_chunks) :
         print("Chunk : " + str(1+i))
         chunk = bin_inp[i*k:(i+1)*k]
-	x,y=arithmetic_encoding(chunk)
+        x,y=arithmetic_encoding(chunk)
         arithmetic_decoding(x,y)
-
+        
+	
 arithmetic()
 
 
