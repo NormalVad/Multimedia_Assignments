@@ -463,5 +463,16 @@ def arithmetic_decoding2(s,tag) :
 
 
 
+num_chunks = 7
+k = int(len(bin_inp)/num_chunks)
+
+
+def arithmetic() :
+    for i in range(num_chunks) :
+        print("Chunk : " + str(1+i))
+        chunk = bin_inp[i*k:(i+1)*k]
+        arithmetic_encoding(chunk)
+
+arithmetic()
 
 
