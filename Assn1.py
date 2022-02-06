@@ -358,7 +358,7 @@ def arithmetic_encoding(s):
   
     print("Encoded String is : " + encoded_string)
     
-    return bin_of_Tx;
+    return bin_of_Tx , encoded_string;
 
 
 def arithmetic_decoding(code,s):
@@ -471,7 +471,8 @@ def arithmetic() :
     for i in range(num_chunks) :
         print("Chunk : " + str(1+i))
         chunk = bin_inp[i*k:(i+1)*k]
-        arithmetic_encoding(chunk)
+	x,y=arithmetic_encoding(chunk)
+        arithmetic_decoding(x,y)
 
 arithmetic()
 
