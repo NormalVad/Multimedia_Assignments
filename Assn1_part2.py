@@ -13,7 +13,7 @@ inp_im = np.mean(im,-1)
 
 print(inp_im.shape)
 
-k = 2
+k = 3
 w = 'db35'
 coeffs = pywt.wavedec2(inp_im,wavelet=w,level=k)
 
@@ -33,7 +33,7 @@ for i in range(k):
 
 t = 1        
 fig1 = plt.figure()
-for s in (1,2,4,8):
+for s in (1,0.5,0.25,0.125):
     coeff_arr1 = copy.deepcopy(coeff_arr)
     for i in range(k):
         for j in {'ad','da','dd'}: 
