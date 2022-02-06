@@ -356,8 +356,33 @@ def arithmetic_encoding(s):
         else:
             encoded_string = encoded_string +bin_of_Tx[1];
   
-    print(encoded_string)
+    print("Encoded String is : " + encoded_string)
     
+    return bin_of_Tx;
+
+
+def arithmetic_decoding(code,s):
+    # s in encoded string
+    # code is the dictionary map of character and there codes
+    decoded_string = ""
+    current=""
+    for i in range(len(s)):
+        current = current + s[i]
+        if(current==code[0]):
+            decoded_string = decoded_string + '0'
+            current=""
+        elif (current==code[1]):
+            decoded_string = decoded_string+ '1'
+            current=""
+    
+    print("Decoded string is : " + decoded_string)
+
+
+
+
+
+
+
 
 def arithmetic_encoding_2(s):
     
@@ -399,7 +424,7 @@ def arithmetic_encoding_2(s):
     
 
 	
-def arithmetic_decoding(s,tag) :
+def arithmetic_decoding2(s,tag) :
     
     # s is the string to be decoded 
     # tag is the unique value for decoding
