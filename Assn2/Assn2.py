@@ -42,6 +42,6 @@ def lzw_encoding(s):
 
 print("Hello")
 
-lzw_encoding("ababbabababba")
+lzw_encoding("a.bar.array.by.barrayar.bay")
 
 
