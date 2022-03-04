@@ -127,6 +127,7 @@ print("Size of GIF image is : " , size_of_compressed_image)
 
 print(((size_of_image-size_of_compressed_image)/size_of_image)*100,"%")
 
+print("Compression Ratio = ", size_of_image/size_of_compressed_image)
 
 
 # Experiment 3 : PNG image
@@ -142,3 +143,4 @@ size_of_compressed_image = os.path.getsize("png_ell786_image.png")
 print("Size of PNG image is : " , size_of_compressed_image)
 
 print(((size_of_image-size_of_compressed_image)/size_of_image)*100,"%")
+print("Compression Ratio = ", size_of_image/size_of_compressed_image)
