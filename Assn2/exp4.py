@@ -6,6 +6,8 @@ img = Image.open("sherlock.png")
 img = img.convert('RGB')
 img_ar = np.array(img)
 rows,cols,color = img_ar.shape 
+rgb_size = rows*cols*color
+print(rgb_size)
 
 def golomb_encode(N,M):
     q = N//M
@@ -75,6 +77,7 @@ for cr in range(color):
     g = np.zeros((3,1))
     q = np.zeros((4,1))
     q[3] = 1
+    out_seq = np.zeros((rows,cols),dtype=object)
     for i in range(rows):
         for j in range(cols):
             if(i == 0 and j == 0):
@@ -104,7 +107,6 @@ for cr in range(color):
             if(g[0] == 0 and g[1] == 0 and g[2] == 0):
                 while(img_ar[i,j,cr] == a and j != cols):
                     j += 1
-                    #####
             else:
                 for k in range(3):
                     if(g[k] <= -1*T3):
@@ -155,9 +157,9 @@ for cr in range(color):
                 if(q[3] == -1):
                     residual *= -1
                 residual %= alpha
-                if(residual < -1*(alpha/2)):
+                if(residual < -1*(alpha//2)):
                     residual += alpha
-                elif(residual > alpha/2):
+                elif(residual > alpha//2):
                     residual -= alpha
 
                 z = N[context_num]
@@ -173,13 +175,16 @@ for cr in range(color):
                 else:
                     val = mapp(residual)
                 
-                golomb_code = gamma(val,k,Lmax,beta)
+                out_seq[i,j] = gamma(val,k,Lmax,beta)
 
                 B[context_num] += residual
                 A[context_num] += abs(residual)
                 if(N[context_num] == 64):
                     A[context_num] /= 2
-                    B[context_num] /= 2
+                    if(B[context_num] >= 0):
+                        B[context_num] /= 2
+                    else:
+                        B[context_num] = -(1 - B[context_num]/2)
                     N[context_num] /= 2
                 if(B[context_num] < -1*N[context_num]):
                     C[context_num] -= 1
@@ -191,22 +196,5 @@ for cr in range(color):
                     B[context_num] -= N[context_num]
                     if(B[context_num] > 0):
                         B[context_num] = 0
-                N[context_num] += 1
 
-
-                
-                
-                
-
-
-                
-                
-                 
-
-                    
-
-                
-
-
-
-
+    print(out_seq)
